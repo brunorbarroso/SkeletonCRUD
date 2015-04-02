@@ -1,6 +1,6 @@
 {
   "name": "inotion/skeletoncrud",
-  "description": "Controller Generico",
+  "description": "Facilitate the creation of CRUD (create, read, update, delete) using SkeletonCRUD",
   "license": "MIT",
   "authors": [
     {
