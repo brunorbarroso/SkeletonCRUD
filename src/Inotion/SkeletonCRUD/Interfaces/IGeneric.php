@@ -43,6 +43,6 @@ Interface IGeneric {
      * @param $objeto
      * @return mixed
      */
-    public function updateItem( $objeto );
+    public function updateItem( $id, $object );
 
 }

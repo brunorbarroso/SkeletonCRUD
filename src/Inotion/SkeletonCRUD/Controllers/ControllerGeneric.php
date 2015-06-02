@@ -1,5 +1,6 @@
 <?php namespace Inotion\SkeletonCRUD\Controllers;
 
+use Illuminate\Http\Request;
 use Inotion\SkeletonCRUD\Interfaces\IGeneric;
 use \Controller;
 
@@ -55,9 +56,9 @@ class ControllerGeneric  extends Controller implements IGeneric {
      * @param $fields
      * @return bool
      */
-    public function updateItem( $fields )
+    public function updateItem( $id, $fields )
     {
-        $item = $this->object->find( $fields['id'] );
+        $item = $this->object->find( $id );
         $item->fill( $fields );
         return ($item->save()) ? true : false;
     }
