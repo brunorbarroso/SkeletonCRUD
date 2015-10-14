@@ -20,7 +20,11 @@ class ControllerGeneric  extends Controller implements IGeneric {
      */
     public function allItems()
     {
-        return $this->object->all();
+        try{
+            return $this->object->all();
+        }catch (\Exception $e){
+            throw new \Exception("Erro ao tentar listar os dados.");
+        }
     }
 
     /**
@@ -29,8 +33,12 @@ class ControllerGeneric  extends Controller implements IGeneric {
      */
     public function saveItem( $fields )
     {
-        $item = $this->object;
-        return ( $item->create( $fields ) ) ? true : false;
+        try{
+            $item = $this->object;
+            return ( $item->create( $fields ) ) ? true : false;
+        }catch (\Exception $e){
+            throw new \Exception("Erro ao tentar salvar os dados.");
+        }
     }
 
     /**
@@ -39,7 +47,11 @@ class ControllerGeneric  extends Controller implements IGeneric {
      */
     public function getByID( $id )
     {
-        return $this->object->find( $id );
+        try{
+            return $this->object->find( $id );
+        }catch (\Exception $e){
+            throw new \Exception("Erro ao tentar buscar os dados.");
+        }
     }
 
     /**
@@ -48,8 +60,16 @@ class ControllerGeneric  extends Controller implements IGeneric {
      */
     public function deleteItem( $id )
     {
-        $item = $this->object->find( $id );
-        return ( $item->delete() ) ? true : false;
+        try{
+            $item = $this->object->find( $id );
+            $bool = false;
+            if(!empty( $item )){
+                $bool = ( $item->delete() ) ? true : false;
+            }
+            return $bool;
+        }catch (\Exception $e){
+            throw new \Exception("Erro ao tentar deletar os dados.");
+        }
     }
 
     /**
@@ -58,9 +78,18 @@ class ControllerGeneric  extends Controller implements IGeneric {
      */
     public function updateItem( $id, $fields )
     {
-        $item = $this->object->find( $id );
-        $item->fill( $fields );
-        return ($item->save()) ? true : false;
+        try{
+            $item = $this->object->find( $id );
+            $bool = false;
+            if(!empty($item)){
+                $item->fill( $fields );
+                $bool = ($item->save()) ? true : false;
+            }
+            return $bool;
+        }catch (\Exception $e){
+            throw new \Exception("Erro ao tentar atualizar os dados.");
+        }
+
     }
 
 }
