@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Inotion\SkeletonCRUD\Interfaces\IGeneric;
-use \Controller;
+use App\Http\Controllers\Controller;
 
 /**
  * Class ControllerGeneric
